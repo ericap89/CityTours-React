@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import "./tour.scss"
 
 class Tour extends Component {
+    state ={
+        showInfo:false
+    }
+
+    handleInfo = () => {
+        this.setState({
+            showInfo:!this.state.showInfo
+        });
+    };
     render() {
         // console.log(this.props);
         const {id, city, img, name, info} = this.props.tour;
@@ -19,11 +28,12 @@ class Tour extends Component {
             <div className="tour-info">
             <h3>{city}</h3>
             <h4>{name}</h4>
-            <h5>info 
-                <span>
+            <h5>info{" "}
+                <span onClick={this.handleInfo}>
                     <i className="fas fa-caret-square-down"></i>
                 </span>
             </h5>
+            {this.state.showInfo && <p>{info}</p>}
             </div>
             </article>
 
